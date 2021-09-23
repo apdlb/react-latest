@@ -36,6 +36,7 @@
       { "extensions": [".js", ".jsx", ".ts", ".tsx"] }
     ],
     "react/jsx-uses-react": "off",
+    "react/jsx-props-no-spreading": "warn",
     "react/react-in-jsx-scope": "off"
   },
   "settings": {
