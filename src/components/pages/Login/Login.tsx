@@ -1,6 +1,6 @@
-import { Grid, TextField } from '@material-ui/core';
-import { Controller, SubmitHandler, useForm } from 'react-hook-form';
-import CustomTextfield from '../../forms/Textfield/Textfield';
+import { Grid } from '@material-ui/core';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import Textfield from '../../forms/Textfield/Textfield';
 
 type Inputs = {
   example: string;
@@ -24,20 +24,15 @@ const Login: React.FC = () => {
     <>
       <Grid>
         <form onSubmit={handleSubmit(onSubmit)}>
-          {/* register your input into the hook by invoking the "register" function */}
-          {/* <Controller
-            control={control}
-            name='example'
-            defaultValue='test'
-            render={({ field }) => <TextField {...field} variant='outlined' />}
-          /> */}
-
-          <CustomTextfield
-            control={control}
-            name='example'
-            defaultValue='test2'
+          <Textfield
+            controllerProps={{
+              control,
+              name: 'example',
+              defaultValue: 'test2',
+            }}
           />
 
+          {/* register your input into the hook by invoking the "register" function */}
           {/* include validation with required or other standard HTML validation rules */}
           <input {...register('exampleRequired', { required: true })} />
           {/* errors will return when field validation fails  */}

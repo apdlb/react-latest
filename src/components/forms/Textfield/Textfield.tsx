@@ -1,17 +1,29 @@
-import { TextField } from '@material-ui/core';
+import { OutlinedTextFieldProps, TextField } from '@material-ui/core';
 import { Controller, ControllerProps, FieldValues } from 'react-hook-form';
 
-const Textfield = <T extends FieldValues>(
-  props: Omit<ControllerProps<T>, 'render'>
-): React.ReactElement => {
+interface ITextField<T> {
+  controllerProps: Omit<ControllerProps<T>, 'render'>;
+  textFieldProps?: OutlinedTextFieldProps;
+}
+
+const Textfield = <T extends FieldValues>({
+  controllerProps,
+  textFieldProps,
+}: ITextField<T>): JSX.Element => {
   return (
     <>
       <Controller
-        {...props}
-        render={({ field }) => <TextField {...field} variant='outlined' />}
+        {...controllerProps}
+        render={({ field }) => (
+          <TextField {...textFieldProps} {...field} variant='outlined' />
+        )}
       />
     </>
   );
+};
+
+Textfield.defaultProps = {
+  textFieldProps: {},
 };
 
 export default Textfield;
