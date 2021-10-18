@@ -1,5 +1,10 @@
 import { TextField as MuiTextField } from '@material-ui/core';
-import { Controller, FieldValues, useFormContext } from 'react-hook-form';
+import {
+  Controller,
+  FieldError,
+  FieldValues,
+  useFormContext,
+} from 'react-hook-form';
 import useFormatMessage from '../../../hooks/useFormatMessage';
 import { ITextFieldProps } from './interfaces';
 
@@ -18,7 +23,8 @@ const TextField = <T extends FieldValues>(
     formState: { errors },
   } = useFormContext<T>();
   const { formatMessage, formatRequiredField } = useFormatMessage();
-  const { [name]: error } = errors;
+  const { [name]: fieldError } = errors;
+  const error = fieldError as FieldError;
 
   let fieldLabel = label;
   if (fieldLabel) {
@@ -50,14 +56,14 @@ const TextField = <T extends FieldValues>(
               size='small'
               error={!!error}
               // 1. On TextField
-              helperText={error ? formatMessage(error.message) : ''}
+              helperText={error?.message ? formatMessage(error.message) : ''}
             />
           );
         }}
       />
 
       {/* 2. Material UI component */}
-      {/* {error && (
+      {/* {error?.message && (
         <FormHelperText error>{formatMessage(error.message)}</FormHelperText>
       )} */}
 
