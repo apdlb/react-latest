@@ -15,12 +15,15 @@ const useStyles = makeStyles(() => {
 
 const App: React.FC = () => {
   const classes = useStyles();
+  const version = process.env.REACT_APP_VERSION;
 
   return (
     <IntlProviderWrapper>
       <MuiThemeProvider theme={createMyTheme()}>
         <SnackbarProvider>
           <CssBaseline>
+            {version && <meta name='version' content={version} />}
+
             <Grid container className={classes.containerRoot}>
               <Routes />
             </Grid>
