@@ -1,9 +1,4 @@
-import {
-  BrowserRouter as Router,
-  Redirect,
-  Route,
-  Switch,
-} from 'react-router-dom';
+import { HashRouter, Redirect, Route, Switch } from 'react-router-dom';
 import Home from '../components/pages/Home/Home';
 import Login from '../components/pages/Login/LoginContainer';
 import NotFound from '../components/pages/NotFound/NotFound';
@@ -11,7 +6,7 @@ import PATHS from './paths';
 
 const Routes: React.FC = () => {
   return (
-    <Router>
+    <HashRouter>
       <Switch>
         <Route exact path='/'>
           <Redirect to={PATHS.LOGIN} />
@@ -29,7 +24,7 @@ const Routes: React.FC = () => {
           <NotFound />
         </Route>
       </Switch>
-    </Router>
+    </HashRouter>
   );
 };
 
